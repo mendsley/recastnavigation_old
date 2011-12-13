@@ -1841,7 +1841,7 @@ dtStatus dtBuildTileCachePolyMesh(dtTileCacheAlloc* alloc,
 			if (v[3] & 0x80)
 			{
 				// This vertex should be removed.
-				vflags[indices[j]] = 1;
+				vflags[indices[j]] += 1;
 			}
 		}
 		
@@ -1926,7 +1926,7 @@ dtStatus dtBuildTileCachePolyMesh(dtTileCacheAlloc* alloc,
 	// Remove edge vertices.
 	for (int i = 0; i < mesh.nverts; ++i)
 	{
-		if (vflags[i])
+		if (vflags[i] == 1)
 		{
 			if (!canRemoveVertex(mesh, (unsigned short)i))
 				continue;
