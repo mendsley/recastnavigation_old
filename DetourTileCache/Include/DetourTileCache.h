@@ -46,6 +46,7 @@ struct dtTileCacheObstacle
 	unsigned char ntouched;
 	unsigned char npending;
 	dtTileCacheObstacle* next;
+	unsigned char areaId;
 };
 
 struct dtTileCacheParams
@@ -104,6 +105,7 @@ public:
 	dtStatus removeTile(dtCompressedTileRef ref, unsigned char** data, int* dataSize);
 	
 	dtStatus addObstacle(const float* pos, const float radius, const float height, dtObstacleRef* result);
+	dtStatus addObstacle(const float* pos, const float radius, const float height, unsigned char areaId, dtObstacleRef* result);
 	dtStatus removeObstacle(const dtObstacleRef ref);
 	
 	dtStatus queryTiles(const float* bmin, const float* bmax,

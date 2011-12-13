@@ -349,8 +349,12 @@ dtStatus dtTileCache::removeTile(dtCompressedTileRef ref, unsigned char** data, 
 	return DT_SUCCESS;
 }
 
+dtStatus dtTileCache::addObstacle(const float* pos, const float radius, const float height, dtObstacleRef* result)
+{
+	return addObstacle(pos, radius, height, 0, result);
+}
 
-dtObstacleRef dtTileCache::addObstacle(const float* pos, const float radius, const float height, dtObstacleRef* result)
+dtStatus dtTileCache::addObstacle(const float* pos, const float radius, const float height, unsigned char areaId, dtObstacleRef* result)
 {
 	if (m_nreqs >= MAX_REQUESTS)
 		return DT_FAILURE | DT_BUFFER_TOO_SMALL;
@@ -372,6 +376,7 @@ dtObstacleRef dtTileCache::addObstacle(const float* pos, const float radius, con
 	dtVcopy(ob->pos, pos);
 	ob->radius = radius;
 	ob->height = height;
+	ob->areaId = areaId;
 	
 	ObstacleRequest* req = &m_reqs[m_nreqs++];
 	memset(req, 0, sizeof(ObstacleRequest));
@@ -605,7 +610,7 @@ dtStatus dtTileCache::buildNavMeshTile(const dtCompressedTileRef ref, dtNavMesh*
 		if (contains(ob->touched, ob->ntouched, ref))
 		{
 			dtMarkCylinderArea(*bc.layer, tile->header->bmin, m_params.cs, m_params.ch,
-							   ob->pos, ob->radius, ob->height, 0);
+							   ob->pos, ob->radius, ob->height, ob->areaId);
 		}
 	}
 	
