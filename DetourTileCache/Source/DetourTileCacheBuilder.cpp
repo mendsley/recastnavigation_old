@@ -1996,7 +1996,7 @@ dtStatus dtMarkCylinderArea(dtTileCacheLayer& layer, const float* orig, const fl
 			const int y = layer.heights[x+z*w];
 			if (y < miny || y > maxy)
 				continue;
-			layer.areas[x+z*w] = areaId;
+			layer.areas[x+z*w] = dtMax(layer.areas[x+z*w], areaId);
 		}
 	}
 
