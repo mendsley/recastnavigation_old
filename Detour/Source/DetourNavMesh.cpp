@@ -16,8 +16,8 @@
 // 3. This notice may not be removed or altered from any source distribution.
 //
 
-#include <math.h>
 #include <float.h>
+#include <sunmath.h>
 #include <string.h>
 #include <stdio.h>
 #include "DetourNavMesh.h"
@@ -1081,8 +1081,8 @@ const dtMeshTile* dtNavMesh::getTile(int i) const
 
 void dtNavMesh::calcTileLoc(const float* pos, int* tx, int* ty) const
 {
-	*tx = (int)floorf((pos[0]-m_orig[0]) / m_tileWidth);
-	*ty = (int)floorf((pos[2]-m_orig[2]) / m_tileHeight);
+	*tx = (int)sunmath::floorf((pos[0]-m_orig[0]) / m_tileWidth);
+	*ty = (int)sunmath::floorf((pos[2]-m_orig[2]) / m_tileHeight);
 }
 
 dtStatus dtNavMesh::getTileAndPolyByRef(const dtPolyRef ref, const dtMeshTile** tile, const dtPoly** poly) const

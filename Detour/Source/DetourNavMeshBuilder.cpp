@@ -16,7 +16,7 @@
 // 3. This notice may not be removed or altered from any source distribution.
 //
 
-#include <math.h>
+#include <sunmath.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -202,8 +202,8 @@ static int createBVTree(const unsigned short* verts, const int /*nverts*/,
 			if (z > it.bmax[2]) it.bmax[2] = z;
 		}
 		// Remap y
-		it.bmin[1] = (unsigned short)floorf((float)it.bmin[1]*ch/cs);
-		it.bmax[1] = (unsigned short)ceilf((float)it.bmax[1]*ch/cs);
+		it.bmin[1] = (unsigned short)sunmath::floorf((float)it.bmin[1]*ch/cs);
+		it.bmax[1] = (unsigned short)sunmath::ceilf((float)it.bmax[1]*ch/cs);
 	}
 	
 	int curNode = 0;

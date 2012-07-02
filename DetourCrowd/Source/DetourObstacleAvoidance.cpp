@@ -21,7 +21,7 @@
 #include "DetourAlloc.h"
 #include "DetourAssert.h"
 #include <string.h>
-#include <math.h>
+#include <sunmath.h>
 #include <float.h>
 #include <new>
 
@@ -58,7 +58,7 @@ static int isectRaySeg(const float* ap, const float* u,
 	dtVsub(v,bq,bp);
 	dtVsub(w,ap,bp);
 	float d = dtVperp2D(u,v);
-	if (fabsf(d) < 1e-6f) return 0;
+	if (sunmath::fabsf(d) < 1e-6f) return 0;
 	d = 1.0f/d;
 	t = dtVperp2D(v,w) * d;
 	if (t < 0 || t > 1) return 0;
@@ -482,7 +482,7 @@ int dtObstacleAvoidanceQuery::sampleVelocityAdaptive(const float* pos, const flo
 	const int nd = dtClamp(ndivs, 1, DT_MAX_PATTERN_DIVS);
 	const int nr = dtClamp(nrings, 1, DT_MAX_PATTERN_RINGS);
 	const float da = (1.0f/nd) * DT_PI*2;
-	const float dang = atan2f(dvel[2], dvel[0]);
+	const float dang = sunmath::atan2f(dvel[2], dvel[0]);
 	
 	// Always add sample at zero
 	pat[npat*2+0] = 0;
@@ -495,8 +495,8 @@ int dtObstacleAvoidanceQuery::sampleVelocityAdaptive(const float* pos, const flo
 		float a = dang + (j&1)*0.5f*da;
 		for (int i = 0; i < nd; ++i)
 		{
-			pat[npat*2+0] = cosf(a)*r;
-			pat[npat*2+1] = sinf(a)*r;
+			pat[npat*2+0] = sunmath::cosf(a)*r;
+			pat[npat*2+1] = sunmath::sinf(a)*r;
 			npat++;
 			a += da;
 		}
