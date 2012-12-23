@@ -3341,7 +3341,7 @@ dtStatus dtNavMeshQuery::findDistanceToWall(dtPolyRef startRef, const float* cen
 	dtVsub(hitNormal, centerPos, hitPos);
 	dtVnormalize(hitNormal);
 	
-	*hitDist = sqrtf(radiusSqr);
+	*hitDist = dtSqrt(radiusSqr);
 	
 	return status;
 }

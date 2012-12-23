@@ -1200,7 +1200,7 @@ void dtCrowd::update(const float dt, dtCrowdAgentDebugInfo* debug)
 					continue;
 				if (distSqr > dtSqr(separationDist))
 					continue;
-				const float dist = sqrtf(distSqr);
+				const float dist = dtSqrt(distSqr);
 				const float weight = separationWeight * (1.0f - dtSqr(dist*invSeparationDist));
 				
 				dtVmad(disp, disp, diff, weight/dist);
@@ -1318,7 +1318,7 @@ void dtCrowd::update(const float dt, dtCrowdAgentDebugInfo* debug)
 				float dist = dtVlenSqr(diff);
 				if (dist > dtSqr(ag->params.radius + nei->params.radius))
 					continue;
-				dist = sqrtf(dist);
+				dist = dtSqrt(dist);
 				float pen = (ag->params.radius + nei->params.radius) - dist;
 				if (dist < 0.0001f)
 				{
