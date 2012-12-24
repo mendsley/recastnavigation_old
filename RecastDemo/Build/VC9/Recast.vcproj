@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="Recast"
 	ProjectGUID="{CEF242C5-E9A3-403B-BAFF-99397BDA5730}"
 	RootNamespace="Recast"
@@ -258,6 +258,10 @@
 				</File>
 				<File
 					RelativePath="..\..\..\Detour\Include\DetourCommon.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Detour\Include\DetourMath.h"
 					>
 				</File>
 				<File
